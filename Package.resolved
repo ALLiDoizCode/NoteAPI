@@ -2,6 +2,24 @@
   "object": {
     "pins": [
       {
+        "package": "APIErrorMiddleware",
+        "repositoryURL": "https://github.com/skelpo/APIErrorMiddleware.git",
+        "state": {
+          "branch": null,
+          "revision": "c8cd6bd0a26cd000c8625e839312e3ad77ccdc3b",
+          "version": "0.3.5"
+        }
+      },
+      {
+        "package": "BSON",
+        "repositoryURL": "https://github.com/OpenKitten/BSON.git",
+        "state": {
+          "branch": null,
+          "revision": "7acd68d0e130e1fd7a167cb9ef2d7b28e97c1936",
+          "version": "6.0.6"
+        }
+      },
+      {
         "package": "Console",
         "repositoryURL": "https://github.com/vapor/console.git",
         "state": {
@@ -62,6 +80,42 @@
           "branch": null,
           "revision": "8da7d475a1a060714766d9ad4b24eb0dae243aab",
           "version": "3.1.11"
+        }
+      },
+      {
+        "package": "Leaf",
+        "repositoryURL": "https://github.com/vapor/leaf.git",
+        "state": {
+          "branch": null,
+          "revision": "d35f54cbac723e673f9bd5078361eea74049c8d7",
+          "version": "3.0.2"
+        }
+      },
+      {
+        "package": "Meow",
+        "repositoryURL": "https://github.com/OpenKitten/Meow.git",
+        "state": {
+          "branch": null,
+          "revision": "8084177bdacd71bcd775d78d1f48386255e15f99",
+          "version": "2.0.2"
+        }
+      },
+      {
+        "package": "MeowVapor",
+        "repositoryURL": "https://github.com/OpenKitten/MeowVapor.git",
+        "state": {
+          "branch": null,
+          "revision": "74f0bea5c0bd475cf4cdf072143093cdc9322408",
+          "version": "2.1.2"
+        }
+      },
+      {
+        "package": "MongoKitten",
+        "repositoryURL": "https://github.com/OpenKitten/MongoKitten.git",
+        "state": {
+          "branch": null,
+          "revision": "818e132111503daef254b643dd790db5146e0948",
+          "version": "5.1.11"
         }
       },
       {

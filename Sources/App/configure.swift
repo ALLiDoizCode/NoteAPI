@@ -1,9 +1,15 @@
 import FluentSQLite
 import Vapor
+import MeowVapor
+import APIErrorMiddleware
 
 /// Called before your application initializes.
 public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
     // Register providers first
+
+    let meow = try MeowProvider(uri: "mongodb://heroku_f46qcxzm:b384h2tgf844hh2l3rs4f5hd2v@ds123603.mlab.com:23603/heroku_f46qcxzm")
+    try services.register(meow)
+    
     try services.register(FluentSQLiteProvider())
 
     // Register routes to the router
@@ -13,7 +19,18 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
 
     // Register middleware
     var middlewares = MiddlewareConfig() // Create _empty_ middleware config
-    // middlewares.use(FileMiddleware.self) // Serves files from `Public/` directory
+    var apiErrorMiddleware = APIErrorMiddleware(environment: Environment.development)
+    middlewares.use(apiErrorMiddleware)
+
+    let corsConfiguration = CORSMiddleware.Configuration(
+        allowedOrigin: .all,
+        allowedMethods: [.GET, .POST, .PUT, .OPTIONS, .DELETE, .PATCH],
+        allowedHeaders: [.accept, .authorization, .contentType, .origin, .xRequestedWith, .userAgent, .accessControlAllowOrigin]
+    )
+    let corsMiddleware = CORSMiddleware(configuration: corsConfiguration)
+
+    middlewares.use(corsMiddleware)
+    middlewares.use(FileMiddleware.self) // Serves files from `Public/` directory
     middlewares.use(ErrorMiddleware.self) // Catches errors and converts to HTTP response
     services.register(middlewares)
 
