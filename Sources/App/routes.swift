@@ -4,8 +4,13 @@ import Vapor
 public func routes(_ router: Router) throws {
     // Basic "It works" example
     NoteController(router:router)
+
     router.get { req in
-        return "It works!"
+        return try req.view().render("index.html")
+    }
+
+    router.get(String.parameter) { req in
+        return try req.view().render("index.html")
     }
     
     // Basic "Hello, world!" example
