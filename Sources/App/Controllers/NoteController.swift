@@ -17,9 +17,16 @@ class NoteController {
         return note.flatMap { object in
             if object._id == "" {
                 object._id = UUID().uuidString
-                return req.meow().map { context in
-                    object.save(to: context)
-                    return object
+                return req.meow().flatMap { context in
+                    return context.find(Note.self, where: ["title":object.title]).getAllResults().map({ notes in
+                        guard notes.count == 0 else {
+                            let reason = "Note Exist"
+                            let identifier = "Note Exist"
+                            throw APIErrors(identifier: identifier, reason: reason, status: .unauthorized)
+                        }
+                        object.save(to: context)
+                        return object
+                    })
                 }
             }else {
                 return req.meow().map { context in
@@ -47,5 +54,17 @@ class NoteController {
                 return objects
             })
         })
+    }
+}
+
+class APIErrors:AbortError {
+    var status: HTTPResponseStatus
+    var identifier: String
+    var reason: String
+    
+    init(identifier:String,reason:String,status:HTTPResponseStatus) {
+        self.identifier = identifier
+        self.reason = reason
+        self.status = status
     }
 }
