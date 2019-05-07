@@ -16,3 +16,7 @@ Insure you have Docker installed
 
 <a href="https://noteapi-boomtown.herokuapp.com">Link</a>
 
+You can also navigate directly to a Note by adding the note title to the URL
+
+<a href="https://noteapi-boomtown.herokuapp.com/Gloop">Link</a>
+
